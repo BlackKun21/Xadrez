@@ -29,7 +29,7 @@ namespace tabuleiro
 
         public bool posicaoValida(Posicao pos)
         {
-            if(pos.linha < 0 || pos.linha > 8 || pos.coluna < 0 || pos.coluna > 8)
+            if(pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
             {
                 return false;
             }                   
@@ -70,6 +70,7 @@ namespace tabuleiro
             aux.posicao = null;
             pecas[pos.linha, pos.coluna] = null;
             return aux;
-        }
+        }       
+        
     }
 }
