@@ -15,11 +15,10 @@ namespace xadrez_console
                 while (!partida.terminada)
                 {
                     Console.Clear();
-                    Tela.printTela(partida.tab);
+                    Tela.imprimirPartida(partida);
+
                     Console.WriteLine();
-                    Console.WriteLine("Turno: " + partida.turno);
-                    Console.WriteLine("Jogador: " + partida.jogadorAtual);
-                    Console.WriteLine("Origem: ");                
+                    Console.Write("Origem: ");
                     Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
                     partida.validarPosicaodeOrigem(origem);
 
@@ -35,6 +34,8 @@ namespace xadrez_console
 
                     partida.realizaJogada(origem, destino);
                 }
+                Console.Clear();
+                Tela.imprimirPartida(partida);
             }
             catch (Xadrez_Exception e)
             {
