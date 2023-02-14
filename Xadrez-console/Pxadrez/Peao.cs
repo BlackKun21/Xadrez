@@ -5,9 +5,10 @@ namespace Pxadrez
 {
     class Peao : Peca
     {
-        public Peao(Cor cor, Tabuleiro tab) : base(cor, tab)
+        private PartidaXadrez partida;
+        public Peao(Cor cor, Tabuleiro tab, PartidaXadrez partida) : base(cor, tab)
         {
-
+            this.partida = partida;
         }
 
         public override string ToString()
@@ -45,41 +46,18 @@ namespace Pxadrez
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
+                pos.definirValores(posicao.linha - 1, posicao.coluna -1);
+                if (tab.posicaoValida(pos) && existePecaInimiga(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
 
                 pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
-                {
-                    mat[pos.linha, pos.coluna] = true;
-                } pos.definirValores(posicao.linha - 1, posicao.coluna);
-                if (tab.posicaoValida(pos) && livre(pos))
-                {
-                    mat[pos.linha, pos.coluna] = true;
-                }
-
-                pos.definirValores(posicao.linha - 2, posicao.coluna);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
-                {
-                    mat[pos.linha, pos.coluna] = true;
-                }
-
-                pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
-                {
-                    mat[pos.linha, pos.coluna] = true;
-                }
-
-                pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
+                if (tab.posicaoValida(pos) && existePecaInimiga(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
             }
-
             else
             {
                 pos.definirValores(posicao.linha + 1, posicao.coluna);
@@ -94,14 +72,14 @@ namespace Pxadrez
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
+                pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
+                if (tab.posicaoValida(pos) && existePecaInimiga(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
-                if (tab.posicaoValida(pos) && livre(pos) && qtdMovimentos == 0)
+                pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
+                if (tab.posicaoValida(pos) && existePecaInimiga(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
