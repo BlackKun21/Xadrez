@@ -12,6 +12,7 @@ namespace Pxadrez
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
         public bool xeque { get; private set; }
+        public Peca vulneravelEmPassant { get; private set; }
 
         public PartidaXadrez()
         {
@@ -66,9 +67,7 @@ namespace Pxadrez
             {
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new Xadrez_Exception("Você não pode se colocar em xeque");
-            }
-
-            Peca p = tab.peca(destino);
+            }            
 
             if (estaemXeque(adversaria(jogadorAtual)))
             {
@@ -86,6 +85,17 @@ namespace Pxadrez
             {
                 turno++;
                 mudaJogador();
+            }
+
+            Peca p = tab.peca(destino);
+            //Jogada especial em Passant
+            if(p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
+            {
+                vulneravelEmPassant = p;
+            }
+            else
+            {
+                vulneravelEmPassant = null;
             }
         }
 

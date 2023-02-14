@@ -57,6 +57,23 @@ namespace Pxadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
+
+                //Especial em passant
+                if(posicao.linha == 3)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if(tab.posicaoValida(esquerda) && existePecaInimiga(esquerda) && tab.peca(esquerda) == partida.vulneravelEmPassant)
+                    {
+                        mat[esquerda.linha, esquerda.coluna] = true;
+                    }
+
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if (tab.posicaoValida(direita) && existePecaInimiga(direita) && tab.peca(direita) == partida.vulneravelEmPassant)
+                    {
+                        mat[direita.linha, direita.coluna] = true;
+                    }
+                }
+
             }
             else
             {
@@ -82,6 +99,22 @@ namespace Pxadrez
                 if (tab.posicaoValida(pos) && existePecaInimiga(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
+                }
+
+                //Especial em passant
+                if (posicao.linha == 4)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if (tab.posicaoValida(esquerda) && existePecaInimiga(esquerda) && tab.peca(esquerda) == partida.vulneravelEmPassant)
+                    {
+                        mat[esquerda.linha, esquerda.coluna] = true;
+                    }
+
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if (tab.posicaoValida(direita) && existePecaInimiga(direita) && tab.peca(direita) == partida.vulneravelEmPassant)
+                    {
+                        mat[direita.linha, direita.coluna] = true;
+                    }
                 }
 
             }
